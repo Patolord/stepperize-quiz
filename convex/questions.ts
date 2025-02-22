@@ -59,18 +59,6 @@ export const startQuiz = mutation({
   },
 });
 
-// Get current progress for a quiz
-export const getCurrentProgress = query({
-  args: { quizId: v.id("quiz") },
-  handler: async (ctx, args) => {
-    return await ctx.db
-      .query("progress")
-      .withIndex("by_quiz", (q) => q.eq("quizId", args.quizId))
-      .order("desc")
-      .first();
-  },
-});
-
 export const submitAnswerAndProgress = mutation({
   args: {
     quizId: v.id("quiz"),
@@ -167,7 +155,7 @@ export const getQuizResults = query({
 
 export function useQuiz(quizId: Id<"quiz">) {
   const quizData = useQuery(api.questions.getQuizData, { quizId });
-  const progress = useQuery(api.questions.getCurrentProgress, { quizId });
+  const progress = useQuery(api.progress.getCurrentProgress, { quizId });
 
   const startQuiz = useMutation(api.questions.startQuiz);
   const submitAnswer = useMutation(api.questions.submitAnswerAndProgress);

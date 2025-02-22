@@ -12,7 +12,7 @@ export type SafeQuiz = {
 
 export function useQuiz(quizId: Id<"quiz">) {
   const quizData = useQuery(api.questions.getQuizData, { quizId });
-  const progress = useQuery(api.questions.getCurrentProgress, { quizId });
+  const progress = useQuery(api.progress.getCurrentProgress, { quizId });
 
   const startQuiz = useMutation(api.questions.startQuiz);
   const submitAnswer = useMutation(api.questions.submitAnswerAndProgress);

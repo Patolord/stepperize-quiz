@@ -13,6 +13,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as progress from "../progress.js";
 import type * as questions from "../questions.js";
 
 /**
@@ -24,6 +25,7 @@ import type * as questions from "../questions.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  progress: typeof progress;
   questions: typeof questions;
 }>;
 export declare const api: FilterApi<
