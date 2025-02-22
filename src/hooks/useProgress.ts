@@ -7,11 +7,6 @@ export default function useProgress(quizId: Id<"quiz">) {
   return progress;
 }
 
-export function useAllProgressByQuizId(quizId: Id<"quiz">) {
-  const progress = useQuery(api.progress.getAllProgressByQuizId, { quizId });
-  return progress;
-}
-
 export function useAllProgress() {
   const progress = useQuery(api.progress.getAllProgress);
   return progress;
