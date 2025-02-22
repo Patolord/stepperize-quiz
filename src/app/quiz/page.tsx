@@ -21,7 +21,7 @@ export default function QuizListPage() {
   if (!quizzes) return <div>Loading quizzes...</div>;
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 flex flex-col items-center justify-center">
       <h1 className="text-2xl font-bold mb-6">Available Quizzes</h1>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {quizzes.map((quiz) => (

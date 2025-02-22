@@ -12,6 +12,7 @@ import {
 } from "./ui/card";
 import { defineStepper } from "@stepperize/react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface QuizProps {
   quizId: Id<"quiz">;
@@ -40,6 +41,7 @@ function QuizStepper({
   progress: NonNullable<ReturnType<typeof useQuiz>["progress"]>;
   onSubmitAnswer: ReturnType<typeof useQuiz>["submitAnswer"];
 }) {
+  const router = useRouter();
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [feedback, setFeedback] = useState<{
     isCorrect: boolean;
@@ -111,6 +113,10 @@ function QuizStepper({
     stepper.next();
   };
 
+  const handleFinish = () => {
+    router.push("/quiz");
+  };
+
   return (
     <div className="p-10">
       <Card className="w-[400px] mx-auto">
@@ -169,8 +175,11 @@ function QuizStepper({
                       Previous
                     </Button>
                     {feedback?.answered ? (
-                      <Button onClick={handleNext} disabled={stepper.isLast}>
-                        {stepper.isLast ? "Finish" : "Next Question"}
+                      <Button
+                        onClick={stepper.isLast ? handleFinish : handleNext}
+                        disabled={false}
+                      >
+                        {stepper.isLast ? "Finish Quiz" : "Next Question"}
                       </Button>
                     ) : (
                       <Button
