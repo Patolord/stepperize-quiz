@@ -30,8 +30,11 @@ export default function QuizListPage() {
     router.push(`/quiz/${quizId}`);
   };
 
-  const handleViewResults = (quizId: Id<"quiz">) => {
-    router.push(`/quiz/${quizId}/results`);
+  const handleViewResults = (
+    quizId: Id<"quiz">,
+    progressId: Id<"progress">
+  ) => {
+    router.push(`/quiz/${quizId}/${progressId}/results`);
   };
 
   if (!quizzes) return <div>Loading quizzes...</div>;
@@ -74,7 +77,7 @@ export default function QuizListPage() {
                             size="sm"
                             onClick={() =>
                               p.isComplete
-                                ? handleViewResults(quiz._id)
+                                ? handleViewResults(quiz._id, p._id)
                                 : handleResumeQuiz(quiz._id)
                             }
                           >

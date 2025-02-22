@@ -1,8 +1,6 @@
-import { Doc, Id } from "./_generated/dataModel";
+import { Doc } from "./_generated/dataModel";
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "./_generated/api";
 
 export type SafeQuestion = {
   _id: Doc<"questions">["_id"];
@@ -118,57 +116,6 @@ export const submitAnswerAndProgress = mutation({
     };
   },
 });
-
-export const getQuizResults = query({
-  args: { quizId: v.id("quiz") },
-  handler: async (ctx, args) => {
-    const progress = await ctx.db
-      .query("progress")
-      .withIndex("by_quiz", (q) => q.eq("quizId", args.quizId))
-      .order("desc")
-      .first();
-
-    if (!progress || !progress.isComplete) {
-      throw new Error("No completed quiz found");
-    }
-
-    const quiz = await ctx.db.get(args.quizId);
-    if (!quiz) throw new Error("Quiz not found");
-
-    const questions = await Promise.all(
-      quiz.questions.map((qId) => ctx.db.get(qId))
-    );
-
-    const correctAnswers = progress.answers.filter(
-      (answer, index) => answer === questions[index]?.correctAnswerIndex
-    );
-
-    return {
-      totalQuestions: quiz.questions.length,
-      correctCount: correctAnswers.length,
-      score: Math.round((correctAnswers.length / quiz.questions.length) * 100),
-      answers: progress.answers,
-      questions: questions,
-    };
-  },
-});
-
-export function useQuiz(quizId: Id<"quiz">) {
-  const quizData = useQuery(api.questions.getQuizData, { quizId });
-  const progress = useQuery(api.progress.getCurrentProgress, { quizId });
-
-  const startQuiz = useMutation(api.questions.startQuiz);
-  const submitAnswer = useMutation(api.questions.submitAnswerAndProgress);
-
-  return {
-    quizData,
-    progress,
-    startQuiz: () => startQuiz({ quizId }),
-    submitAnswer: (selectedOptionIndex: 0 | 1 | 2 | 3) =>
-      submitAnswer({ quizId, selectedOptionIndex }),
-    isLoading: quizData === undefined || progress === undefined,
-  };
-}
 
 export const getQuizzes = query({
   args: {},
