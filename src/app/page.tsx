@@ -1,10 +1,14 @@
-import Quiz from "@/components/Quiz";
-import { Id } from "../../convex/_generated/dataModel";
-export default function Home() {
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+export default function HomePage() {
   return (
-    <div>
-      <h1>Hello World</h1>
-      <Quiz quizId={"j97bgzdbj9ap6rk1jns6q3bypd7avy76" as Id<"quiz">} />
-    </div>
+    <>
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h1>Hello World</h1>
+        <Button asChild>
+          <Link href="/quiz">Go to quizzes</Link>
+        </Button>
+      </div>
+    </>
   );
 }

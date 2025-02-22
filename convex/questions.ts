@@ -181,3 +181,10 @@ export function useQuiz(quizId: Id<"quiz">) {
     isLoading: quizData === undefined || progress === undefined,
   };
 }
+
+export const getQuizzes = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("quiz").collect();
+  },
+});

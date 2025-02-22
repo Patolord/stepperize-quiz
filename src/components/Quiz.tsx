@@ -12,20 +12,15 @@ import {
 } from "./ui/card";
 import { defineStepper } from "@stepperize/react";
 import { useState, useEffect } from "react";
-import { StartScreen } from "./StartScreen";
 
 interface QuizProps {
   quizId: Id<"quiz">;
 }
 
-export default function Quiz({ quizId }: QuizProps) {
-  const { quizData, progress, startQuiz, submitAnswer } = useQuiz(quizId);
+export function Quiz({ quizId }: QuizProps) {
+  const { quizData, progress, submitAnswer } = useQuiz(quizId);
 
-  if (!quizData) return <div>Loading quiz...</div>;
-
-  if (!progress) {
-    return <StartScreen quiz={quizData} onStart={startQuiz} />;
-  }
+  if (!quizData || !progress) return null;
 
   return (
     <QuizStepper

@@ -26,3 +26,8 @@ export function useQuiz(quizId: Id<"quiz">) {
     isLoading: quizData === undefined || progress === undefined,
   };
 }
+
+export function useQuizzes() {
+  const quizzes = useQuery(api.questions.getQuizzes);
+  return quizzes;
+}
