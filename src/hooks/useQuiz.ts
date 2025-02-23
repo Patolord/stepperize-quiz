@@ -15,7 +15,7 @@ export function useQuiz(quizId: Id<"quiz">) {
   const progress = useQuery(api.progress.getCurrentProgress, { quizId });
 
   const startQuiz = useMutation(api.questions.startQuiz);
-  const submitAnswer = useMutation(api.progress.submitAnswerAndProgress);
+  const submitAnswer = useMutation(api.questions.submitAnswerAndProgress);
 
   return {
     quizData,
