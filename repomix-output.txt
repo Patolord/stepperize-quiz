@@ -1,0 +1,1835 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+================================================================
+File Summary
+================================================================
+
+Purpose:
+--------
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+File Format:
+------------
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Multiple file entries, each consisting of:
+  a. A separator line (================)
+  b. The file path (File: path/to/file)
+  c. Another separator line
+  d. The full contents of the file
+  e. A blank line
+
+Usage Guidelines:
+-----------------
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+Notes:
+------
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+
+Additional Info:
+----------------
+
+================================================================
+Directory Structure
+================================================================
+.gitignore
+components.json
+convex/_generated/api.d.ts
+convex/_generated/api.js
+convex/_generated/dataModel.d.ts
+convex/_generated/server.d.ts
+convex/_generated/server.js
+convex/progress.ts
+convex/questions.ts
+convex/schema.ts
+eslint.config.mjs
+next.config.ts
+package.json
+postcss.config.mjs
+README.md
+src/app/convex-client-provider.tsx
+src/app/globals.css
+src/app/layout.tsx
+src/app/page.tsx
+src/app/quiz/[quizId]/page.tsx
+src/app/quiz/page.tsx
+src/components/Quiz.tsx
+src/components/QuizQuestion.tsx
+src/components/QuizStepper.tsx
+src/components/ui/button.tsx
+src/components/ui/card.tsx
+src/hooks/useProgress.ts
+src/hooks/useQuiz.ts
+src/hooks/useQuizStepperState.ts
+src/hooks/useStepper.ts
+src/lib/utils.ts
+tailwind.config.ts
+tsconfig.json
+
+================================================================
+Files
+================================================================
+
+================
+File: .gitignore
+================
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+================
+File: components.json
+================
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "src/app/globals.css",
+    "baseColor": "zinc",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "lucide"
+}
+
+================
+File: convex/_generated/api.d.ts
+================
+/* eslint-disable */
+/**
+ * Generated `api` utility.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import type {
+  ApiFromModules,
+  FilterApi,
+  FunctionReference,
+} from "convex/server";
+import type * as progress from "../progress.js";
+import type * as questions from "../questions.js";
+
+/**
+ * A utility for referencing Convex functions in your app's API.
+ *
+ * Usage:
+ * ```js
+ * const myFunctionReference = api.myModule.myFunction;
+ * ```
+ */
+declare const fullApi: ApiFromModules<{
+  progress: typeof progress;
+  questions: typeof questions;
+}>;
+export declare const api: FilterApi<
+  typeof fullApi,
+  FunctionReference<any, "public">
+>;
+export declare const internal: FilterApi<
+  typeof fullApi,
+  FunctionReference<any, "internal">
+>;
+
+================
+File: convex/_generated/api.js
+================
+/* eslint-disable */
+/**
+ * Generated `api` utility.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import { anyApi } from "convex/server";
+
+/**
+ * A utility for referencing Convex functions in your app's API.
+ *
+ * Usage:
+ * ```js
+ * const myFunctionReference = api.myModule.myFunction;
+ * ```
+ */
+export const api = anyApi;
+export const internal = anyApi;
+
+================
+File: convex/_generated/dataModel.d.ts
+================
+/* eslint-disable */
+/**
+ * Generated data model types.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import type {
+  DataModelFromSchemaDefinition,
+  DocumentByName,
+  TableNamesInDataModel,
+  SystemTableNames,
+} from "convex/server";
+import type { GenericId } from "convex/values";
+import schema from "../schema.js";
+
+/**
+ * The names of all of your Convex tables.
+ */
+export type TableNames = TableNamesInDataModel<DataModel>;
+
+/**
+ * The type of a document stored in Convex.
+ *
+ * @typeParam TableName - A string literal type of the table name (like "users").
+ */
+export type Doc<TableName extends TableNames> = DocumentByName<
+  DataModel,
+  TableName
+>;
+
+/**
+ * An identifier for a document in Convex.
+ *
+ * Convex documents are uniquely identified by their `Id`, which is accessible
+ * on the `_id` field. To learn more, see [Document IDs](https://docs.convex.dev/using/document-ids).
+ *
+ * Documents can be loaded using `db.get(id)` in query and mutation functions.
+ *
+ * IDs are just strings at runtime, but this type can be used to distinguish them from other
+ * strings when type checking.
+ *
+ * @typeParam TableName - A string literal type of the table name (like "users").
+ */
+export type Id<TableName extends TableNames | SystemTableNames> =
+  GenericId<TableName>;
+
+/**
+ * A type describing your Convex data model.
+ *
+ * This type includes information about what tables you have, the type of
+ * documents stored in those tables, and the indexes defined on them.
+ *
+ * This type is used to parameterize methods like `queryGeneric` and
+ * `mutationGeneric` to make them type-safe.
+ */
+export type DataModel = DataModelFromSchemaDefinition<typeof schema>;
+
+================
+File: convex/_generated/server.d.ts
+================
+/* eslint-disable */
+/**
+ * Generated utilities for implementing server-side Convex query and mutation functions.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import {
+  ActionBuilder,
+  HttpActionBuilder,
+  MutationBuilder,
+  QueryBuilder,
+  GenericActionCtx,
+  GenericMutationCtx,
+  GenericQueryCtx,
+  GenericDatabaseReader,
+  GenericDatabaseWriter,
+} from "convex/server";
+import type { DataModel } from "./dataModel.js";
+
+/**
+ * Define a query in this Convex app's public API.
+ *
+ * This function will be allowed to read your Convex database and will be accessible from the client.
+ *
+ * @param func - The query function. It receives a {@link QueryCtx} as its first argument.
+ * @returns The wrapped query. Include this as an `export` to name it and make it accessible.
+ */
+export declare const query: QueryBuilder<DataModel, "public">;
+
+/**
+ * Define a query that is only accessible from other Convex functions (but not from the client).
+ *
+ * This function will be allowed to read from your Convex database. It will not be accessible from the client.
+ *
+ * @param func - The query function. It receives a {@link QueryCtx} as its first argument.
+ * @returns The wrapped query. Include this as an `export` to name it and make it accessible.
+ */
+export declare const internalQuery: QueryBuilder<DataModel, "internal">;
+
+/**
+ * Define a mutation in this Convex app's public API.
+ *
+ * This function will be allowed to modify your Convex database and will be accessible from the client.
+ *
+ * @param func - The mutation function. It receives a {@link MutationCtx} as its first argument.
+ * @returns The wrapped mutation. Include this as an `export` to name it and make it accessible.
+ */
+export declare const mutation: MutationBuilder<DataModel, "public">;
+
+/**
+ * Define a mutation that is only accessible from other Convex functions (but not from the client).
+ *
+ * This function will be allowed to modify your Convex database. It will not be accessible from the client.
+ *
+ * @param func - The mutation function. It receives a {@link MutationCtx} as its first argument.
+ * @returns The wrapped mutation. Include this as an `export` to name it and make it accessible.
+ */
+export declare const internalMutation: MutationBuilder<DataModel, "internal">;
+
+/**
+ * Define an action in this Convex app's public API.
+ *
+ * An action is a function which can execute any JavaScript code, including non-deterministic
+ * code and code with side-effects, like calling third-party services.
+ * They can be run in Convex's JavaScript environment or in Node.js using the "use node" directive.
+ * They can interact with the database indirectly by calling queries and mutations using the {@link ActionCtx}.
+ *
+ * @param func - The action. It receives an {@link ActionCtx} as its first argument.
+ * @returns The wrapped action. Include this as an `export` to name it and make it accessible.
+ */
+export declare const action: ActionBuilder<DataModel, "public">;
+
+/**
+ * Define an action that is only accessible from other Convex functions (but not from the client).
+ *
+ * @param func - The function. It receives an {@link ActionCtx} as its first argument.
+ * @returns The wrapped function. Include this as an `export` to name it and make it accessible.
+ */
+export declare const internalAction: ActionBuilder<DataModel, "internal">;
+
+/**
+ * Define an HTTP action.
+ *
+ * This function will be used to respond to HTTP requests received by a Convex
+ * deployment if the requests matches the path and method where this action
+ * is routed. Be sure to route your action in `convex/http.js`.
+ *
+ * @param func - The function. It receives an {@link ActionCtx} as its first argument.
+ * @returns The wrapped function. Import this function from `convex/http.js` and route it to hook it up.
+ */
+export declare const httpAction: HttpActionBuilder;
+
+/**
+ * A set of services for use within Convex query functions.
+ *
+ * The query context is passed as the first argument to any Convex query
+ * function run on the server.
+ *
+ * This differs from the {@link MutationCtx} because all of the services are
+ * read-only.
+ */
+export type QueryCtx = GenericQueryCtx<DataModel>;
+
+/**
+ * A set of services for use within Convex mutation functions.
+ *
+ * The mutation context is passed as the first argument to any Convex mutation
+ * function run on the server.
+ */
+export type MutationCtx = GenericMutationCtx<DataModel>;
+
+/**
+ * A set of services for use within Convex action functions.
+ *
+ * The action context is passed as the first argument to any Convex action
+ * function run on the server.
+ */
+export type ActionCtx = GenericActionCtx<DataModel>;
+
+/**
+ * An interface to read from the database within Convex query functions.
+ *
+ * The two entry points are {@link DatabaseReader.get}, which fetches a single
+ * document by its {@link Id}, or {@link DatabaseReader.query}, which starts
+ * building a query.
+ */
+export type DatabaseReader = GenericDatabaseReader<DataModel>;
+
+/**
+ * An interface to read from and write to the database within Convex mutation
+ * functions.
+ *
+ * Convex guarantees that all writes within a single mutation are
+ * executed atomically, so you never have to worry about partial writes leaving
+ * your data in an inconsistent state. See [the Convex Guide](https://docs.convex.dev/understanding/convex-fundamentals/functions#atomicity-and-optimistic-concurrency-control)
+ * for the guarantees Convex provides your functions.
+ */
+export type DatabaseWriter = GenericDatabaseWriter<DataModel>;
+
+================
+File: convex/_generated/server.js
+================
+/* eslint-disable */
+/**
+ * Generated utilities for implementing server-side Convex query and mutation functions.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import {
+  actionGeneric,
+  httpActionGeneric,
+  queryGeneric,
+  mutationGeneric,
+  internalActionGeneric,
+  internalMutationGeneric,
+  internalQueryGeneric,
+} from "convex/server";
+
+/**
+ * Define a query in this Convex app's public API.
+ *
+ * This function will be allowed to read your Convex database and will be accessible from the client.
+ *
+ * @param func - The query function. It receives a {@link QueryCtx} as its first argument.
+ * @returns The wrapped query. Include this as an `export` to name it and make it accessible.
+ */
+export const query = queryGeneric;
+
+/**
+ * Define a query that is only accessible from other Convex functions (but not from the client).
+ *
+ * This function will be allowed to read from your Convex database. It will not be accessible from the client.
+ *
+ * @param func - The query function. It receives a {@link QueryCtx} as its first argument.
+ * @returns The wrapped query. Include this as an `export` to name it and make it accessible.
+ */
+export const internalQuery = internalQueryGeneric;
+
+/**
+ * Define a mutation in this Convex app's public API.
+ *
+ * This function will be allowed to modify your Convex database and will be accessible from the client.
+ *
+ * @param func - The mutation function. It receives a {@link MutationCtx} as its first argument.
+ * @returns The wrapped mutation. Include this as an `export` to name it and make it accessible.
+ */
+export const mutation = mutationGeneric;
+
+/**
+ * Define a mutation that is only accessible from other Convex functions (but not from the client).
+ *
+ * This function will be allowed to modify your Convex database. It will not be accessible from the client.
+ *
+ * @param func - The mutation function. It receives a {@link MutationCtx} as its first argument.
+ * @returns The wrapped mutation. Include this as an `export` to name it and make it accessible.
+ */
+export const internalMutation = internalMutationGeneric;
+
+/**
+ * Define an action in this Convex app's public API.
+ *
+ * An action is a function which can execute any JavaScript code, including non-deterministic
+ * code and code with side-effects, like calling third-party services.
+ * They can be run in Convex's JavaScript environment or in Node.js using the "use node" directive.
+ * They can interact with the database indirectly by calling queries and mutations using the {@link ActionCtx}.
+ *
+ * @param func - The action. It receives an {@link ActionCtx} as its first argument.
+ * @returns The wrapped action. Include this as an `export` to name it and make it accessible.
+ */
+export const action = actionGeneric;
+
+/**
+ * Define an action that is only accessible from other Convex functions (but not from the client).
+ *
+ * @param func - The function. It receives an {@link ActionCtx} as its first argument.
+ * @returns The wrapped function. Include this as an `export` to name it and make it accessible.
+ */
+export const internalAction = internalActionGeneric;
+
+/**
+ * Define a Convex HTTP action.
+ *
+ * @param func - The function. It receives an {@link ActionCtx} as its first argument, and a `Request` object
+ * as its second.
+ * @returns The wrapped endpoint function. Route a URL path to this function in `convex/http.js`.
+ */
+export const httpAction = httpActionGeneric;
+
+================
+File: convex/progress.ts
+================
+import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
+
+// Get current progress for a quiz
+export const getCurrentProgress = query({
+  args: { quizId: v.id("quiz") },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("progress")
+      .withIndex("by_quiz", (q) => q.eq("quizId", args.quizId))
+      .order("desc")
+      .first();
+  },
+});
+
+export const submitAnswerAndProgress = mutation({
+  args: {
+    quizId: v.id("quiz"),
+    selectedOptionIndex: v.union(
+      v.literal(0),
+      v.literal(1),
+      v.literal(2),
+      v.literal(3)
+    ),
+  },
+  handler: async (ctx, args) => {
+    const currentProgress = await ctx.db
+      .query("progress")
+      .withIndex("by_quiz", (q) => q.eq("quizId", args.quizId))
+      .order("desc")
+      .first();
+
+    if (!currentProgress) throw new Error("No active quiz progress found");
+    if (currentProgress.isComplete) throw new Error("Quiz is already complete");
+
+    const quiz = await ctx.db.get(args.quizId);
+    if (!quiz) throw new Error("Quiz not found");
+
+    const currentQuestionId =
+      quiz.questions[currentProgress.currentQuestionIndex];
+    const currentQuestion = await ctx.db.get(currentQuestionId);
+    if (!currentQuestion) throw new Error("Question not found");
+
+    const isAnswerCorrect =
+      currentQuestion.correctAnswerIndex === args.selectedOptionIndex;
+
+    const nextQuestionIndex = currentProgress.currentQuestionIndex + 1;
+    const isQuizComplete = nextQuestionIndex >= quiz.questions.length;
+
+    // Store answer with feedback
+    await ctx.db.patch(currentProgress._id, {
+      currentQuestionIndex: nextQuestionIndex,
+      answers: [...currentProgress.answers, args.selectedOptionIndex],
+      answerFeedback: [
+        ...(currentProgress.answerFeedback ?? []),
+        {
+          isCorrect: isAnswerCorrect,
+          explanation: currentQuestion.explanation,
+        },
+      ],
+      isComplete: isQuizComplete,
+    });
+
+    return {
+      isAnswerCorrect,
+      isComplete: isQuizComplete,
+      feedback: isAnswerCorrect
+        ? "Correct! Well done!"
+        : "Incorrect. Try again!",
+      explanation: currentQuestion.explanation,
+      nextQuestionIndex,
+    };
+  },
+});
+
+// Get all progress records
+export const getAllProgress = query({
+  handler: async (ctx) => {
+    return await ctx.db.query("progress").collect();
+  },
+});
+
+================
+File: convex/questions.ts
+================
+import { Doc } from "./_generated/dataModel";
+import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
+
+export type SafeQuestion = {
+  _id: Doc<"questions">["_id"];
+  _creationTime: Doc<"questions">["_creationTime"];
+  title: string;
+  question: string;
+  options: string[];
+};
+
+// Utility function to prepare question data for client
+function sanitizeQuestionForClient(question: Doc<"questions">): SafeQuestion {
+  const safeQuestion = {
+    _id: question._id,
+    _creationTime: question._creationTime,
+    title: question.title,
+    question: question.question,
+    options: question.options,
+  };
+  return safeQuestion;
+}
+
+export const getQuizData = query({
+  args: { quizId: v.id("quiz") },
+  handler: async (ctx, args) => {
+    const quiz = await ctx.db.get(args.quizId);
+    if (!quiz) throw new Error("Quiz not found");
+
+    // Get all questions and sanitize them
+    const safeQuestions: SafeQuestion[] = await Promise.all(
+      quiz.questions.map(async (questionId) => {
+        const question = await ctx.db.get(questionId);
+        if (!question) throw new Error("Question not found");
+        return sanitizeQuestionForClient(question);
+      })
+    );
+
+    return {
+      ...quiz,
+      questions: safeQuestions,
+    };
+  },
+});
+
+export const startQuiz = mutation({
+  args: { quizId: v.id("quiz") },
+  handler: async (ctx, args) => {
+    return await ctx.db.insert("progress", {
+      quizId: args.quizId,
+      currentQuestionIndex: 0,
+      answers: [],
+      isComplete: false,
+      answerFeedback: [],
+    });
+  },
+});
+
+export const getQuizzes = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("quiz").collect();
+  },
+});
+
+================
+File: convex/schema.ts
+================
+import { defineSchema, defineTable } from "convex/server";
+import { v } from "convex/values";
+
+export default defineSchema({
+  questions: defineTable({
+    title: v.string(),
+    question: v.string(),
+    options: v.array(v.string()),
+    correctAnswerIndex: v.optional(v.number()),
+    explanation: v.optional(v.string()),
+  }),
+  quiz: defineTable({
+    title: v.string(),
+    questions: v.array(v.id("questions")),
+  }),
+
+  progress: defineTable({
+    quizId: v.id("quiz"),
+    currentQuestionIndex: v.number(),
+    answers: v.array(v.number()),
+    answerFeedback: v.array(
+      v.object({
+        isCorrect: v.boolean(),
+        explanation: v.optional(v.string()),
+      })
+    ),
+    isComplete: v.boolean(),
+  }).index("by_quiz", ["quizId"]),
+});
+
+================
+File: eslint.config.mjs
+================
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+];
+
+export default eslintConfig;
+
+================
+File: next.config.ts
+================
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+
+================
+File: package.json
+================
+{
+  "name": "stepperize-quiz",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.2",
+    "@stepperize/react": "^5.1.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "convex": "^1.19.2",
+    "lucide-react": "^0.475.0",
+    "next": "15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.7",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
+
+================
+File: postcss.config.mjs
+================
+/** @type {import('postcss-load-config').Config} */
+const config = {
+  plugins: {
+    tailwindcss: {},
+  },
+};
+
+export default config;
+
+================
+File: README.md
+================
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+================
+File: src/app/convex-client-provider.tsx
+================
+"use client";
+
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ReactNode } from "react";
+
+const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+
+export function ConvexClientProvider({ children }: { children: ReactNode }) {
+  return <ConvexProvider client={convex}>{children}</ConvexProvider>;
+}
+
+================
+File: src/app/globals.css
+================
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  :root {
+
+    --background: 0 0% 100%;
+
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 240 5.9% 10%;
+
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+
+    --input: 240 5.9% 90%;
+
+    --ring: 240 10% 3.9%;
+
+    --chart-1: 12 76% 61%;
+
+    --chart-2: 173 58% 39%;
+
+    --chart-3: 197 37% 24%;
+
+    --chart-4: 43 74% 66%;
+
+    --chart-5: 27 87% 67%;
+
+    --radius: 0.5rem
+  }
+  .dark {
+
+    --background: 240 10% 3.9%;
+
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+
+    --input: 240 3.7% 15.9%;
+
+    --ring: 240 4.9% 83.9%;
+
+    --chart-1: 220 70% 50%;
+
+    --chart-2: 160 60% 45%;
+
+    --chart-3: 30 80% 55%;
+
+    --chart-4: 280 65% 60%;
+
+    --chart-5: 340 75% 55%
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+================
+File: src/app/layout.tsx
+================
+import "./globals.css";
+import { ConvexClientProvider } from "./convex-client-provider";
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        <ConvexClientProvider>{children}</ConvexClientProvider>
+      </body>
+    </html>
+  );
+}
+
+================
+File: src/app/page.tsx
+================
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+export default function HomePage() {
+  return (
+    <>
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h1>Hello World</h1>
+        <Button asChild>
+          <Link href="/quiz">Go to quizzes</Link>
+        </Button>
+      </div>
+    </>
+  );
+}
+
+================
+File: src/app/quiz/[quizId]/page.tsx
+================
+import { Quiz } from "@/components/Quiz";
+import { Id } from "../../../../convex/_generated/dataModel";
+
+export default async function QuizPage({
+  params,
+}: {
+  params: Promise<{ quizId: Id<"quiz"> }>;
+}) {
+  const quizId = (await params).quizId;
+  return <Quiz quizId={quizId} />;
+}
+
+================
+File: src/app/quiz/page.tsx
+================
+"use client";
+
+import { useQuizzes } from "@/hooks/useQuiz";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { Id } from "../../../convex/_generated/dataModel";
+import { useAllProgress } from "@/hooks/useProgress";
+
+export default function QuizListPage() {
+  const quizzes = useQuizzes();
+  const router = useRouter();
+  const startQuiz = useMutation(api.questions.startQuiz);
+  const progress = useAllProgress();
+
+  const handleStartQuiz = async (quizId: Id<"quiz">) => {
+    await startQuiz({ quizId });
+    router.push(`/quiz/${quizId}`);
+  };
+
+  const handleResumeQuiz = (quizId: Id<"quiz">) => {
+    router.push(`/quiz/${quizId}`);
+  };
+
+  const handleViewResults = (
+    quizId: Id<"quiz">,
+    progressId: Id<"progress">
+  ) => {
+    router.push(`/quiz/${quizId}/${progressId}/results`);
+  };
+
+  if (!quizzes) return <div>Loading quizzes...</div>;
+
+  return (
+    <div className="container mx-auto py-10 flex flex-col items-center justify-center">
+      <h1 className="text-2xl font-bold mb-6">Available Quizzes</h1>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {quizzes.map((quiz) => {
+          const quizProgress =
+            progress?.filter((p) => p.quizId === quiz._id) || [];
+          const latestProgress = quizProgress[0];
+          const hasInProgress = latestProgress && !latestProgress.isComplete;
+
+          return (
+            <Card key={quiz._id} className="flex flex-col">
+              <CardHeader>
+                <CardTitle>{quiz.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <div className="space-y-2">
+                  {quizProgress.length > 0 && (
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium">Previous Attempts:</p>
+                      {quizProgress.map((p, index) => (
+                        <div
+                          key={p._id}
+                          className="flex items-center justify-between text-sm"
+                        >
+                          <span>
+                            Attempt {quizProgress.length - index}
+                            {p.isComplete ? (
+                              <span className="text-green-600 ml-2">✓</span>
+                            ) : (
+                              <span className="text-blue-600 ml-2">⟳</span>
+                            )}
+                          </span>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() =>
+                              p.isComplete
+                                ? handleViewResults(quiz._id, p._id)
+                                : handleResumeQuiz(quiz._id)
+                            }
+                          >
+                            {p.isComplete ? "View Results" : "Resume"}
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+              <CardFooter>
+                {!hasInProgress && (
+                  <Button
+                    className="w-full"
+                    onClick={() => handleStartQuiz(quiz._id)}
+                  >
+                    Start New Attempt
+                  </Button>
+                )}
+              </CardFooter>
+            </Card>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+================
+File: src/components/Quiz.tsx
+================
+"use client";
+
+import { Id } from "../../convex/_generated/dataModel";
+import { useQuiz } from "@/hooks/useQuiz";
+import { QuizStepper } from "./QuizStepper";
+
+interface QuizProps {
+  quizId: Id<"quiz">;
+}
+
+export function Quiz({ quizId }: QuizProps) {
+  const { quizData, progress, submitAnswer } = useQuiz(quizId);
+
+  if (!quizData || !progress) return null;
+
+  return (
+    <QuizStepper
+      quizData={quizData}
+      progress={progress}
+      onSubmitAnswer={submitAnswer}
+    />
+  );
+}
+
+================
+File: src/components/QuizQuestion.tsx
+================
+import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+
+interface QuizQuestionProps {
+  questionNumber: number;
+  totalQuestions: number;
+  question: string;
+  options: string[];
+  stepper: {
+    isFirst: boolean;
+    isLast: boolean;
+    prev: () => void;
+    next: () => void;
+  };
+  state: {
+    selectedOption: number | null;
+    feedback: {
+      isCorrect: boolean;
+      message: string;
+      explanation?: string;
+      answered: boolean;
+    } | null;
+  };
+  handlers: {
+    onOptionSelect: (optionIndex: number) => void;
+    onSubmit: () => void;
+    onFinish: () => void;
+  };
+  disabled?: boolean;
+}
+
+export function QuizQuestion({
+  questionNumber,
+  totalQuestions,
+  question,
+  options,
+  stepper,
+  state,
+  handlers,
+  disabled = false,
+}: QuizQuestionProps) {
+  const isAnswered = Boolean(state.feedback?.answered);
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>
+          Question {questionNumber} of {totalQuestions}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>{question}</p>
+        <div className="flex flex-col gap-2 mt-4">
+          {options.map((option, optionIndex) => (
+            <Button
+              key={optionIndex}
+              variant={
+                state.selectedOption === optionIndex ? "default" : "outline"
+              }
+              onClick={() => handlers.onOptionSelect(optionIndex)}
+              className="w-full justify-start"
+              disabled={disabled || state.feedback?.answered}
+            >
+              {option}
+            </Button>
+          ))}
+        </div>
+        {state.feedback && (
+          <div
+            className={`mt-4 p-4 rounded-md ${
+              state.feedback.isCorrect ? "bg-green-50" : "bg-red-50"
+            }`}
+          >
+            <p className="font-medium">{state.feedback.message}</p>
+            {state.feedback.explanation && (
+              <p className="mt-2 text-sm">{state.feedback.explanation}</p>
+            )}
+          </div>
+        )}
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button
+          variant="outline"
+          onClick={stepper.prev}
+          disabled={stepper.isFirst}
+        >
+          Previous
+        </Button>
+        {isAnswered ? (
+          <Button
+            onClick={stepper.isLast ? handlers.onFinish : stepper.next}
+            disabled={disabled}
+          >
+            {stepper.isLast ? "Finish Quiz" : "Next Question"}
+          </Button>
+        ) : (
+          <Button
+            onClick={handlers.onSubmit}
+            disabled={disabled || state.selectedOption === null}
+          >
+            Submit Answer
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
+  );
+}
+
+================
+File: src/components/QuizStepper.tsx
+================
+import { Card } from "./ui/card";
+import { QuizQuestion } from "./QuizQuestion";
+import { useQuizStepperState } from "@/hooks/useQuizStepperState";
+import { SafeQuiz } from "@/hooks/useQuiz";
+
+interface QuizStepperProps {
+  quizData: SafeQuiz;
+  progress: {
+    currentQuestionIndex: number;
+    answers: number[];
+    answerFeedback?: {
+      isCorrect: boolean;
+      explanation?: string;
+    }[];
+  };
+  onSubmitAnswer: (selectedOptionIndex: 0 | 1 | 2 | 3) => Promise<{
+    isAnswerCorrect: boolean;
+    feedback: string;
+    explanation?: string;
+  }>;
+}
+
+export function QuizStepper({
+  quizData,
+  progress,
+  onSubmitAnswer,
+}: QuizStepperProps) {
+  const {
+    state,
+    stepperControls,
+    switchQuestion,
+    handleOptionSelect,
+    handleAnswerSubmit,
+    handleNext,
+    handleFinish,
+  } = useQuizStepperState({
+    quizData,
+    previousAnswers: progress.answers,
+    answerFeedback: progress.answerFeedback,
+    onSubmitAnswer,
+  });
+
+  return (
+    <div className="p-10">
+      <Card className="w-[400px] mx-auto">
+        {switchQuestion((question, index) => (
+          <QuizQuestion
+            questionNumber={index + 1}
+            totalQuestions={quizData.questions.length}
+            question={question.question}
+            options={question.options}
+            stepper={{
+              ...stepperControls,
+              next: handleNext,
+            }}
+            state={state}
+            handlers={{
+              onOptionSelect: handleOptionSelect,
+              onSubmit: handleAnswerSubmit,
+              onFinish: handleFinish,
+            }}
+            disabled={index > progress.currentQuestionIndex}
+          />
+        ))}
+      </Card>
+    </div>
+  );
+}
+
+================
+File: src/components/ui/button.tsx
+================
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icon: "h-9 w-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+Button.displayName = "Button"
+
+export { Button, buttonVariants }
+
+================
+File: src/components/ui/card.tsx
+================
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-xl border bg-card text-card-foreground shadow",
+      className
+    )}
+    {...props}
+  />
+))
+Card.displayName = "Card"
+
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
+))
+CardHeader.displayName = "CardHeader"
+
+const CardTitle = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("font-semibold leading-none tracking-tight", className)}
+    {...props}
+  />
+))
+CardTitle.displayName = "CardTitle"
+
+const CardDescription = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+CardDescription.displayName = "CardDescription"
+
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+))
+CardContent.displayName = "CardContent"
+
+const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center p-6 pt-0", className)}
+    {...props}
+  />
+))
+CardFooter.displayName = "CardFooter"
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+
+================
+File: src/hooks/useProgress.ts
+================
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { Id } from "../../convex/_generated/dataModel";
+
+export default function useProgress(quizId: Id<"quiz">) {
+  const progress = useQuery(api.progress.getCurrentProgress, { quizId });
+  return progress;
+}
+
+export function useAllProgress() {
+  const progress = useQuery(api.progress.getAllProgress);
+  return progress;
+}
+
+================
+File: src/hooks/useQuiz.ts
+================
+import { useMutation, useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { Id } from "../../convex/_generated/dataModel";
+import { type SafeQuestion } from "../../convex/questions";
+
+export type SafeQuiz = {
+  _id: Id<"quiz">;
+  title: string;
+  description?: string;
+  questions: SafeQuestion[];
+};
+
+export function useQuiz(quizId: Id<"quiz">) {
+  const quizData = useQuery(api.questions.getQuizData, { quizId });
+  const progress = useQuery(api.progress.getCurrentProgress, { quizId });
+
+  const startQuiz = useMutation(api.questions.startQuiz);
+  const submitAnswer = useMutation(api.progress.submitAnswerAndProgress);
+
+  return {
+    quizData,
+    progress,
+    startQuiz: () => startQuiz({ quizId }),
+    submitAnswer: (selectedOptionIndex: 0 | 1 | 2 | 3) =>
+      submitAnswer({ quizId, selectedOptionIndex }),
+    isLoading: quizData === undefined || progress === undefined,
+  };
+}
+
+export function useQuizzes() {
+  const quizzes = useQuery(api.questions.getQuizzes);
+  return quizzes;
+}
+
+================
+File: src/hooks/useQuizStepperState.ts
+================
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { SafeQuiz } from "./useQuiz";
+import { useStepper } from "./useStepper";
+
+interface QuizStepperState {
+  selectedOption: number | null;
+  feedback: {
+    isCorrect: boolean;
+    message: string;
+    explanation?: string;
+    answered: boolean;
+  } | null;
+}
+
+interface UseQuizStepperStateProps {
+  quizData: SafeQuiz;
+  previousAnswers: number[];
+  answerFeedback: { isCorrect: boolean; explanation?: string }[] | undefined;
+  onSubmitAnswer: (selectedOptionIndex: 0 | 1 | 2 | 3) => Promise<{
+    isAnswerCorrect: boolean;
+    feedback: string;
+    explanation?: string;
+  }>;
+}
+
+export function useQuizStepperState({
+  quizData,
+  previousAnswers,
+  answerFeedback,
+  onSubmitAnswer,
+}: UseQuizStepperStateProps) {
+  const router = useRouter();
+  const [state, setState] = useState<QuizStepperState>({
+    selectedOption: null,
+    feedback: null,
+  });
+
+  const { currentStepIndex, stepperControls, switchQuestion } =
+    useStepper(quizData);
+
+  useEffect(() => {
+    const historicalAnswer = previousAnswers[currentStepIndex];
+    const historicalFeedback = answerFeedback?.[currentStepIndex];
+
+    if (historicalAnswer !== undefined && historicalFeedback) {
+      setState({
+        selectedOption: historicalAnswer,
+        feedback: {
+          isCorrect: historicalFeedback.isCorrect,
+          message: historicalFeedback.isCorrect
+            ? "Correct! Well done!"
+            : "Incorrect. Try again!",
+          explanation: historicalFeedback.explanation,
+          answered: true,
+        },
+      });
+    } else {
+      setState({
+        selectedOption: null,
+        feedback: null,
+      });
+    }
+  }, [currentStepIndex, previousAnswers, answerFeedback]);
+
+  const handleOptionSelect = (optionIndex: number) => {
+    setState((prev) => ({
+      ...prev,
+      selectedOption: optionIndex,
+      feedback: null, // Reset feedback when selecting a new option
+    }));
+  };
+
+  const handleAnswerSubmit = async () => {
+    if (state.selectedOption === null) return false;
+
+    try {
+      const result = await onSubmitAnswer(
+        state.selectedOption as 0 | 1 | 2 | 3
+      );
+
+      setState((prev) => ({
+        ...prev,
+        feedback: {
+          isCorrect: result.isAnswerCorrect,
+          message: result.feedback,
+          explanation: result.explanation,
+          answered: true,
+        },
+      }));
+
+      return result.isAnswerCorrect;
+    } catch (error) {
+      console.error("Failed to submit answer:", error);
+      return false;
+    }
+  };
+
+  const handleNext = () => {
+    stepperControls.next();
+    // Always reset state when moving to next question
+    setState({
+      selectedOption: null,
+      feedback: null,
+    });
+  };
+
+  const handleFinish = () => {
+    router.push("/quiz");
+  };
+
+  return {
+    state,
+    stepperControls,
+    switchQuestion,
+    handleOptionSelect,
+    handleAnswerSubmit,
+    handleNext,
+    handleFinish,
+  };
+}
+
+================
+File: src/hooks/useStepper.ts
+================
+import { ReactElement } from "react";
+import { defineStepper } from "@stepperize/react";
+import { SafeQuiz } from "./useQuiz";
+
+interface StepperQuestion {
+  id: string;
+  title: string;
+  question: string;
+  options: string[];
+}
+
+export function useStepper(quizData: SafeQuiz) {
+  const questions: StepperQuestion[] = quizData.questions.map((q, index) => ({
+    id: `question-${index}`,
+    title: q.title,
+    question: q.question,
+    options: q.options,
+  }));
+
+  const { useStepper } = defineStepper(...questions);
+  const stepper = useStepper();
+
+  return {
+    stepper,
+    currentStepIndex: stepper.all.indexOf(stepper.current),
+    stepperControls: {
+      isFirst: stepper.isFirst,
+      isLast: stepper.isLast,
+      prev: stepper.prev,
+      next: stepper.next,
+    },
+    switchQuestion: (
+      render: (question: StepperQuestion, index: number) => ReactElement
+    ) =>
+      stepper.switch({
+        ...Object.fromEntries(
+          questions.map((question, index) => [
+            question.id,
+            () => render(question, index),
+          ])
+        ),
+      }),
+  };
+}
+
+================
+File: src/lib/utils.ts
+================
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+================
+File: tailwind.config.ts
+================
+import type { Config } from "tailwindcss";
+
+export default {
+    darkMode: ["class"],
+    content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+  	extend: {
+  		colors: {
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config;
+
+================
+File: tsconfig.json
+================
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+
+
+================================================================
+End of Codebase
+================================================================
